@@ -2,6 +2,7 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import qs from "qs"
 
 // create an axios instance
 const service = axios.create({
@@ -21,6 +22,14 @@ service.interceptors.request.use(
       // please modify it according to the actual situation
       config.headers['Authorization'] = 'Bearer ' + getToken()
     }
+
+    if (config.method === 'post') {
+        //Serialize the post request parameters and change the array object format to arr=1&arr=2
+        config.paramsSerializer = function(params) {
+          return qs.stringify(params, { arrayFormat: 'repeat' })
+        }
+    }
+
     return config
   },
   error => {
@@ -46,7 +55,7 @@ service.interceptors.response.use(
     const res = response.data
 
     // if the custom code is not 200, it is judged as an error.
-    if (res.code !== 200) {
+    if (res.code !== 200 && res.code !== 302) {
       Message({
         message: res.message || 'Error',
         type: 'error',

@@ -21,3 +21,19 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function authorizeConsent(data) {
+  return request({
+    url: '/oauth2/authorize',
+    method: 'post',
+    params: data
+  })
+}
+
+export function oauth2Authorize(data) {
+  return request({
+    url: '/oauth2/authorize',
+    method: 'get',
+    params: data
+  })
+}
