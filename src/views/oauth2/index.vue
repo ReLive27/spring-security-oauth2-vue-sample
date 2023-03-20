@@ -48,7 +48,6 @@ export default {
       consentForm: {
         client_id: '',
         state: ''
-
       },
       checkScopes: [],
       principalName: '',
@@ -64,7 +63,8 @@ export default {
 
   methods: {
     cancelConsent() {
-      this.$refs.consentForm.resetFields()
+      this.checkScopes = []
+      this.handleConsent()
     },
 
     handleConsent() {
