@@ -18,10 +18,10 @@
           />
           <el-form-item>
             <el-checkbox-group v-model="checkScopes">
-              <el-checkbox v-for="scope in scopes" :label="scope.scope" :key="scope" :disabled="scope.disabled">{{scope.description}}</el-checkbox>
+              <el-checkbox v-for="scope in scopes" :key="scope" :disabled="scope.disabled" :label="scope.scope">{{ scope.description }}</el-checkbox>
             </el-checkbox-group>
           </el-form-item>
-          <hr/>
+          <hr>
 
           <el-button :loading="loading" type="info" style="width: 48%;" @click.native.prevent="cancelConsent">Cancel
           </el-button>
@@ -40,14 +40,14 @@
 </template>
 
 <script>
-import {authorizeConsent, oauth2Authorize} from '@/api/user'
+import { authorizeConsent, oauth2Authorize } from '@/api/user'
 
 export default {
   data() {
     return {
       consentForm: {
         client_id: '',
-        state: '',
+        state: ''
 
       },
       checkScopes: [],
@@ -64,12 +64,12 @@ export default {
 
   methods: {
     cancelConsent() {
-      this.$refs.consentForm.resetFields();
+      this.$refs.consentForm.resetFields()
     },
 
     handleConsent() {
       this.loading = true
-      authorizeConsent(Object.assign({}, this.consentForm, {scope: this.checkScopes})).then(response => {
+      authorizeConsent(Object.assign({}, this.consentForm, { scope: this.checkScopes })).then(response => {
         if (response.code === 302) {
           location.href = response.data
         }
@@ -80,7 +80,7 @@ export default {
     },
 
     oauth2Authorize() {
-      let requestParams = {
+      const requestParams = {
         response_type: this.$route.query.response_type,
         client_id: this.$route.query.client_id,
         scope: this.$route.query.scope,
@@ -90,20 +90,19 @@ export default {
       }
       oauth2Authorize(requestParams).then(response => {
         if (response.code === 200) {
-          this.principalName = response.data.principalName;
+          this.principalName = response.data.principalName
           this.consentForm.client_id = response.data.clientId
           this.consentForm.state = response.data.state
           this.scopes = response.data.scopes
           this.checkScopes = response.data.scopes.map(data => data.scope)
           this.redirectUri = response.data.redirectUri
-
         } else if (response.code === 302) {
           location.href = response.data
         }
       }).catch(() => {
 
       })
-    },
+    }
   }
 }
 </script>
