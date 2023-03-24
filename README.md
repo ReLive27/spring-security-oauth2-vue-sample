@@ -1,6 +1,8 @@
 # spring-security-oauth2-vue-sample
 
-This project corresponds to the Vue sample of [OAuth2.0 Security Practices for Single Page Applications (SPA)]() in the
+This project corresponds to the Vue sample
+of [Building an OAuth2 Authorization Consent Page with Vue.js](https://github.com/ReLive27/spring-security-oauth2-sample/tree/main/oauth2-custom-consent-page-with-vue)
+in the
 [spring-oauth2-sample](https://github.com/ReLive27/spring-security-oauth2-sample) project. This project is built on top
 of the [vue-admin-template](https://github.com/PanJiaChen/vue-admin-template) template.
 
@@ -32,5 +34,6 @@ Start the server
 
 ## Demo
 
+![demo](https://github.com/ReLive27/ReLive27.github.io/blob/main/public/static/images/blogs/oauth2-vue.gif)
 
 
