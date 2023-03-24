@@ -61,6 +61,12 @@ export const constantRoutes = [
     hidden: true
   },
 
+  {
+    path: '/oauth2/callback',
+    name: 'OAuth2Callback',
+    component: () => import('@/views/oauth2/callback')
+  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

@@ -43,6 +43,8 @@
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
 
+      <el-button :loading="loading" style="width:100%;margin-left:0px;margin-bottom:30px;color: #ffffff;background-color: black" @click.native.prevent="handleGithubLogin">GitHub</el-button>
+
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: 111111</span>
@@ -120,6 +122,10 @@ export default {
           return false
         }
       })
+    },
+
+    handleGithubLogin() {
+      location.href = 'http://localhost:9528/dev-api/oauth2/authorization/github'
     }
   }
 }

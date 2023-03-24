@@ -37,3 +37,11 @@ export function oauth2Authorize(data) {
     params: data
   })
 }
+
+export function githubLogin(data) {
+  return request({
+    url: '/login/oauth2/code/github',
+    method: 'get',
+    params: data
+  })
+}
