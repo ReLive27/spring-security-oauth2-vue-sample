@@ -90,8 +90,8 @@ export default {
   },
   watch: {
     $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
+      handler: function() {
+        this.redirect = sessionStorage.getItem('redirect')
       },
       immediate: true
     }

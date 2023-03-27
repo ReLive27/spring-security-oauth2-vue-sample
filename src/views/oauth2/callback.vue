@@ -5,7 +5,19 @@
 <script>
 export default {
   name: 'Callback',
-
+  data() {
+    return {
+      redirect: undefined
+    }
+  },
+  watch: {
+    $route: {
+      handler: function() {
+        this.redirect = sessionStorage.getItem('redirect')
+      },
+      immediate: true
+    }
+  },
   mounted() {
     this.githubLogin()
   },
