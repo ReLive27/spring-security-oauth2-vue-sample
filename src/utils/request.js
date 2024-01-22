@@ -2,7 +2,6 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-import qs from 'qs'
 
 // create an axios instance
 const service = axios.create({
@@ -23,12 +22,12 @@ service.interceptors.request.use(
       config.headers['Authorization'] = 'Bearer ' + getToken()
     }
 
-    if (config.method === 'post') {
-      // Serialize the post request parameters and change the array object format to arr=1&arr=2
-      config.paramsSerializer = function(params) {
-        return qs.stringify(params, { arrayFormat: 'repeat' })
-      }
-    }
+    // if (config.method === 'post') {
+    //   // Serialize the post request parameters and change the array object format to arr=1&arr=2
+    //   config.paramsSerializer = function(params) {
+    //     return qs.stringify(params, { arrayFormat: 'repeat' })
+    //   }
+    // }
 
     return config
   },

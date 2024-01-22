@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import qs from 'qs'
 
 export function login(data) {
   return request({
@@ -26,7 +27,13 @@ export function authorizeConsent(data) {
   return request({
     url: '/oauth2/authorize',
     method: 'post',
-    params: data
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    transformRequest: [
+      function(data) {
+       return qs.stringify(data, { arrayFormat: 'repeat' })
+      }
+    ],
+    data
   })
 }
 
